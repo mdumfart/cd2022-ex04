@@ -24,7 +24,7 @@ jobs:
         
 
     - name: Build docker image
-      run: docker build -f Dockerfile -t michaeldumfart/demo:latest
+      run: docker build -f Dockerfile -t michaeldumfart/demo:latest ./
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
