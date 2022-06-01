@@ -27,3 +27,14 @@ jobs:
       with:
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/demo:${{ github.sha }}, ${{ secrets.DOCKERHUB_USERNAME }}/demo:latest
+
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: 'michaeldumfart/demo:${{ github.sha }}'
+        scan-type: 'config'
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        vuln-type: 'os,library'
+        severity: 'CRITICAL,HIGH'
